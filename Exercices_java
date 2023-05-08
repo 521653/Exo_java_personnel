@@ -1,0 +1,120 @@
+//La classe Personne
+package Classes;
+
+ public abstract class Personne {
+    private String nom;
+    private int age;
+
+     public Personne(String nom, int age) {
+         this.nom = nom;
+         this.age = age;
+     } 
+     public void createPersonne(){
+         this.nom = nom;
+         this.age = age;
+     }
+
+     public Personne() {
+         this("Asterix",30);
+     }
+     public Personne(Personne p){
+         this.nom = p.nom;
+         this.age = p.age;
+     }
+
+
+     public void afficher(){
+         System.out.println("Nom :"+ nom);
+         System.out.println("Age :"+ age+" ans");
+         /*for (int i = 0; i < comptes.length; i++) {
+             System.out.println("comptes["+i+"] = "+comptes[i]);
+         }*/
+     }
+     public void afficher(boolean compact){
+         if (compact == false){
+             System.out.println("Nom :"+ nom);
+             System.out.println("Age :"+ age+" ans");
+         }
+         else
+             System.out.println("[Coupdetrix, 25]");
+     }
+     public abstract void afficherType();
+ }
+
+// La classe Etudiant qui hérite de la classe personne
+
+package Classes;
+
+public class Etudiant extends Personne{
+    private int noteMoyenne;
+    private boolean faineant;
+
+    public Etudiant(String nom, int age, int noteMoyenne, boolean faineant) {
+        super(nom,age);
+        this.noteMoyenne = noteMoyenne;
+        this.faineant = faineant;
+    }
+    public void afficher(){
+        super.afficher();
+        System.out.println("Etudiant");
+    }
+    @Override
+    public void afficherType(){
+        System.out.println("Etudiant");
+    }
+}
+
+// La classe Enseignant qui hérite de la classe personne
+
+package Classes;
+
+public class Enseignant extends Personne {
+    private int bnHeuresCours;
+    private boolean grincheux;
+
+    public Enseignant(String nom, int age, int bnHeuresCours, boolean grincheux) {
+        super(nom, age);
+        this.bnHeuresCours = bnHeuresCours;System.out.println("Nom :"+ nom);
+         System.out.println("Age :"+ age+" ans");
+        this.grincheux = grincheux;
+    }
+    public void afficher(){
+        super.afficher();
+        System.out.println("Enseignant");
+    }
+    @Override
+    public void afficherType(){
+         System.out.println("Enseignant");
+    }
+}
+
+// La classe Main Pour les testes 
+
+import Classes.*;
+
+public class Main {
+    public static void main(String[] args) {
+        /*Personne sageBis = new Personne();
+        Personne sagebas = new Personne(new Personne("Fallou",86));
+        sage.afficher();
+        sageBis.afficher();
+        sagebas.afficher();*/
+        Enseignant enseignant1 = new Enseignant("Ndoye",45,50,true);
+        Etudiant etudiant1 = new Etudiant("Soupaloigonycrouton",20,2,true);
+        enseignant1.afficher();
+        etudiant1.afficher();
+        Personne[] personnes = new Personne[5];
+        personnes[0] = enseignant1;
+        personnes[1] = new Enseignant("Diallo",65,50,false);
+        personnes[2] = etudiant1;
+        personnes[3] = new Etudiant("Groscon",18,12,true);
+        personnes[4] = new Etudiant("Batard",21,8,true);
+        for (int i = 0; i < personnes.length; i++) {
+            personnes[i].afficher();
+            /*if (personnes[i] instanceof Enseignant)
+                System.out.println("La personne est un enseignant ");
+            else
+                System.out.println("La personne est un etudiant ");*/
+        }
+    }
+}
